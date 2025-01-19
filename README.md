@@ -4,9 +4,9 @@ EasyOutfit is a Google Chrome extension designed to help you choose your daily o
 
 ## Features
 
-- **Outfit Suggestions**: Get daily outfit suggestions based on the weather and your wardrobe.
-- **Wardrobe Management**: Keep track of your clothes and categorize them for easy access.
-- **Weather Integration**: Automatically fetches weather data to suggest appropriate outfits.
+- **Color/Texture/Pattern retrieve**: Retrieve a color/texture/pattern from web page.
+- **Create Sample**: Create sample clothes based on retrieved data.
+- **Combination**: Make combination based on your choose.
 
 ## Structure
 
@@ -22,9 +22,10 @@ EasyOutfit is a Google Chrome extension designed to help you choose your daily o
 
 ## Usage
 
-1. Open the EasyOutfit extension by clicking on the icon in the Chrome toolbar.
-2. Follow the setup instructions to add your wardrobe items.
-3. Get daily outfit suggestions and enjoy hassle-free mornings!
+1. Click command(ctrl + q) for picking mode.
+2. Click left mouse button for retrieve clothe sample(right mouse button for dismiss).
+3. Choose item for generating sample.
+4. Make combination based on your samples.
 
 ## Contributing
 
@@ -32,11 +33,10 @@ We welcome contributions! Please read our [contributing guidelines](#) before su
 
 ## License
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+This project is proprietary and all rights are reserved.  
+Unauthorized use, modification, or distribution of the code is strictly prohibited.  
+For full details, please refer to the [LICENSE](./LICENSE) file.
 
 ## Contact
 
-For any questions or feedback, please contact us at [support@easyoutfit.com](mailto:support@easyoutfit.com).
-
-test
-test2
+For any questions or feedback, please contact us at [ogtitle23@gmail.com].
