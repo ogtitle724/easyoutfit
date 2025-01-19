@@ -2,7 +2,7 @@
 
 EasyOutfit is a Google Chrome extension designed to simplify your daily outfit selection process. With features to extract colors, textures, and patterns from web pages, it helps you create and combine outfit ideas effortlessly.
 
----
+<br>
 
 ## Features
 
@@ -10,7 +10,7 @@ EasyOutfit is a Google Chrome extension designed to simplify your daily outfit s
 - **Create Samples**: Generate clothing samples based on retrieved data to visualize your options.
 - **Combination Tool**: Mix and match your selected samples to create the perfect outfit combinations.
 
----
+<br>
 
 ## Structure
 
@@ -18,7 +18,7 @@ EasyOutfit is a Google Chrome extension designed to simplify your daily outfit s
 - **`background.js`**: Handles background processes, such as listening for commands or managing persistent tasks.
 - **`content.js`**: Manages interactions with the webpage, such as extracting visual elements and displaying the picker.
 
----
+<br>
 
 ## Installation
 
@@ -28,7 +28,7 @@ EasyOutfit is a Google Chrome extension designed to simplify your daily outfit s
 4. Click on "Load unpacked" and select the directory where the extension is stored.
 5. The extension will be installed and ready to use.
 
----
+<br>
 
 ## Usage
 
@@ -39,7 +39,7 @@ EasyOutfit is a Google Chrome extension designed to simplify your daily outfit s
 4. Use the extracted data to create clothing samples.
 5. Combine samples to visualize outfit options.
 
----
+<br>
 
 ## Contributing
 
@@ -53,7 +53,7 @@ Please follow these steps to contribute:
 
 For more details, refer to our [contributing guidelines](#).
 
----
+<br>
 
 ## License
 
@@ -61,7 +61,7 @@ This project is proprietary and all rights are reserved.
 Unauthorized use, modification, or distribution of the code is strictly prohibited.  
 For full details, please refer to the [LICENSE](./LICENSE) file.
 
----
+<br>
 
 ## Contact
 
