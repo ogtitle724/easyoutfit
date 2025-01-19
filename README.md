@@ -8,6 +8,12 @@ EasyOutfit is a Google Chrome extension designed to help you choose your daily o
 - **Wardrobe Management**: Keep track of your clothes and categorize them for easy access.
 - **Weather Integration**: Automatically fetches weather data to suggest appropriate outfits.
 
+## Structure
+
+- **manifest.json**: The manifest file is the configuration file for a Chrome extension. It tells Chrome how the extension should behave.
+- **background.js**: The background script runs continuously in the background and listens for command.
+- **content.js**: The content script is responsible for interacting with the webpage.
+
 ## Installation
 
 1. Download the extension from the [Chrome Web Store](#).
