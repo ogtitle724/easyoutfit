@@ -6,11 +6,11 @@ const interactiveElements = document.querySelectorAll(
   "a, button, input, textarea, select, div, svg"
 );
 
-document.addEventListener("mousemove", followMouse);
+document.addEventListener("mousemove", handleMousemove);
 document.addEventListener("click", handleClick);
 document.addEventListener("keydown", handleKeydown);
 
-function followMouse(event) {
+function handleMousemove(event) {
   if (rafID) cancelAnimationFrame(rafID);
 
   rafID = requestAnimationFrame(() => {
@@ -25,11 +25,13 @@ function followMouse(event) {
 }
 
 function handleClick(event) {
-  event.preventDefault();
+  if (isActive) {
+    event.preventDefault();
 
-  if (event.button === 0) {
-    // Save the extracted pattern or color.
-    // Open window for combine clothes
+    if (event.button === 0) {
+      // Save the extracted pattern or color.
+      // Open window for combine clothes
+    }
   }
 }
 
