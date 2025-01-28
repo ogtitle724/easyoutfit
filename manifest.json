@@ -3,32 +3,23 @@
   "name": "Outpicker",
   "version": "1.0",
   "description": "Outpicker is a Google Chrome extension designed to simplify your daily outfit selection process.",
-  "permissions": ["storage", "activeTab", "scripting"],
+  "permissions": ["tabs", "storage", "scripting"],
   "background": {
     "service_worker": "background.js"
   },
-  "action": {
-    "default_popup": "popup.html",
-    "default_icon": {
-      "16": "images/icon.png",
-      "48": "images/icon.png",
-      "128": "images/icon.png"
+  "commands": {
+    "capture-page": {
+      "suggested_key": {
+        "default": "Ctrl+Q"
+      },
+      "description": "Capture the visible page"
     }
   },
-  "icons": {
-    "16": "images/icon.png",
-    "48": "images/icon.png",
-    "128": "images/icon.png"
-  },
-  "commands": {},
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
       "js": ["content.js"]
     }
   ],
-  "host_permissions": [
-    "https://*.google.com/*",
-    "https://*.googleusercontent.com/*"
-  ]
+  "host_permissions": ["<all_urls>"]
 }

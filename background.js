@@ -1,21 +1,33 @@
-/* chrome.commands.onCommand.addListener((command) => {
-  console.log("on command");
-  // Listens for keyboard shortcuts registered in the manifest.
-  if (command === "_execute_action") {
-    console.log("execute command");
-    // Check if the executed command matches "_execute_action".
-    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-      console.log("tab:", tabs);
-      // Gets the currently active tab in the current window.
-      chrome.scripting.executeScript({
-        target: { tabId: tabs[0].id }, // Targets the active tab.
-        files: ["content.js"], // Injects the content script into the active tab.
+let isActive = false;
+let imgData = null;
+
+chrome.commands.onCommand.addListener((command) => {
+  console.log("Command:", command);
+
+  if (command === "capture-page") {
+    chrome.tabs.captureVisibleTab(null, { format: "png" }, (dataUrl) => {
+      if (chrome.runtime.lastError) {
+        console.error("Capture error:", chrome.runtime.lastError.message);
+        return;
+      }
+
+      chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+        if (tabs.length === 0) return; // no active tab
+        const activeTabId = tabs[0].id;
+        const message = { isActive };
+
+        if (!isActive) message.dataUrl = dataUrl;
+
+        chrome.tabs.sendMessage(activeTabId, message, (response) => {
+          if (chrome.runtime.lastError) {
+            console.error("Message error:", chrome.runtime.lastError.message);
+          } else {
+            imgData = dataUrl;
+            isActive = !isActive;
+            console.log("Message sent successfully:", response);
+          }
+        });
       });
     });
   }
 });
-
-chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-  console.log("Current tab URL:", tabs[0].url);
-});
- */
