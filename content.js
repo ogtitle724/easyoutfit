@@ -67,7 +67,7 @@ function createOverlay(dataUrl) {
     ctx.drawImage(img, 0, 0, imgWidth / dpr, imgHeight / dpr);
     document.body.appendChild(canvas);
     window.addEventListener("wheel", handleWheel, { passive: false });
-    window.addEventListener("scroll", preventScroll, { passive: false });
+    disableScroll();
   };
 }
 
@@ -85,12 +85,7 @@ function destroyOverlay() {
   }
 
   window.removeEventListener("wheel", handleWheel);
-  window.removeEventListener("scroll", preventScroll);
-}
-
-function preventScroll(event) {
-  event.preventDefault();
-  event.stopPropagation();
+  enableScroll();
 }
 
 function imgData2DataURL(imageData) {
@@ -112,6 +107,34 @@ function getSampleImageData(x, y) {
   if (startX + size > imgWidth) startX = imgWidth - size;
   if (startY + size > imgHeight) startY = imgHeight - size;
   return ctx.getImageData(startX, startY, size, size);
+}
+
+function disableScroll() {
+  window.addEventListener("scroll", preventScroll, { passive: false });
+  window.addEventListener("wheel", preventScroll, { passive: false });
+  window.addEventListener("touchmove", preventScroll, { passive: false });
+  window.addEventListener("keydown", preventArrowScroll, { passive: false });
+}
+
+function enableScroll() {
+  window.removeEventListener("scroll", preventScroll);
+  window.removeEventListener("wheel", preventScroll);
+  window.removeEventListener("touchmove", preventScroll);
+  window.removeEventListener("keydown", preventArrowScroll);
+}
+
+// Prevent default scrolling behavior
+function preventScroll(event) {
+  event.preventDefault();
+}
+
+// Prevent arrow keys from scrolling
+function preventArrowScroll(event) {
+  if (
+    ["ArrowUp", "ArrowDown", "Space", "PageUp", "PageDown"].includes(event.key)
+  ) {
+    event.preventDefault();
+  }
 }
 
 function handleMousemove(event) {
