@@ -1,33 +1,33 @@
-// background.js
+let isActive = false;
+let imgData = null;
 
-// Listener for when the extension is installed or updated
-chrome.runtime.onInstalled.addListener(function (details) {
-  console.log("Extension installed or updated", details);
-  // Perform any setup tasks here
-});
+chrome.commands.onCommand.addListener((command) => {
+  console.log("Command:", command);
 
-// Listener for when a message is received from the content script or popup
-chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
-  console.log("Message received:", message);
-  // Handle the message and send a response if needed
-  sendResponse({ response: "Message received" });
-});
+  if (command === "capture-page") {
+    chrome.tabs.captureVisibleTab(null, { format: "png" }, (dataUrl) => {
+      if (chrome.runtime.lastError) {
+        console.error("Capture error:", chrome.runtime.lastError.message);
+        return;
+      }
 
-// Example of using chrome alarms API
-chrome.alarms.create("exampleAlarm", { delayInMinutes: 1 });
+      chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+        if (tabs.length === 0) return; // no active tab
+        const activeTabId = tabs[0].id;
+        const message = { isActive };
 
-chrome.alarms.onAlarm.addListener(function (alarm) {
-  if (alarm.name === "exampleAlarm") {
-    console.log("Alarm triggered:", alarm);
-    // Perform any tasks when the alarm is triggered
+        if (!isActive) message.dataUrl = dataUrl;
+
+        chrome.tabs.sendMessage(activeTabId, message, (response) => {
+          if (chrome.runtime.lastError) {
+            console.error("Message error:", chrome.runtime.lastError.message);
+          } else {
+            imgData = dataUrl;
+            isActive = !isActive;
+            console.log("Message sent successfully:", response);
+          }
+        });
+      });
+    });
   }
-});
-
-// Example of using chrome storage API
-chrome.storage.sync.set({ key: "value" }, function () {
-  console.log('Value is set to "value"');
-});
-
-chrome.storage.sync.get(["key"], function (result) {
-  console.log("Value currently is " + result.key);
 });
