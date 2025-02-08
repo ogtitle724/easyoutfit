@@ -2,8 +2,6 @@ let isActive = false;
 let imgData = null;
 
 chrome.commands.onCommand.addListener((command) => {
-  console.log("Command:", command);
-
   if (command === "capture-page") {
     chrome.tabs.captureVisibleTab(null, { format: "png" }, (dataUrl) => {
       if (chrome.runtime.lastError) {
@@ -24,7 +22,6 @@ chrome.commands.onCommand.addListener((command) => {
           } else {
             imgData = dataUrl;
             isActive = !isActive;
-            console.log("Message sent successfully:", response);
           }
         });
       });
